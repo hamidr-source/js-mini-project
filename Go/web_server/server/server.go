@@ -14,6 +14,7 @@ func New() *server {
 
 func (s *server) Server(port int) {
 	http.HandleFunc("/hello", s.Hello)
+	http.HandleFunc("/bmi", s.Bmi)
 	http.Handle("/sample", &sample{})
 
 	addr := fmt.Sprintf(":%d", port)

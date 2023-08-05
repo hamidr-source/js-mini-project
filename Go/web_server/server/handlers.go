@@ -36,5 +36,15 @@ func (handler *server) Bmi(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "invalid height provided %.2f", body.height)
 			return
 		}
+		body.height *= 0.01
+
+		if body.weight < 5 || body.weight > 200 {
+			fmt.Fprintf(w, "invalid weight provided %.2f", body.weight)
+			return
+		}
+
+		bmi := body.weight / (body.height * body.height)
+
+		fmt.Fprintf(w, "your BMI is = %.2f ", bmi)
 	}
 }
