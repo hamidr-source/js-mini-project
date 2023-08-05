@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 )
 
 func (handler *server) Hello(w http.ResponseWriter, r *http.Request) {
@@ -47,4 +48,9 @@ func (handler *server) Bmi(w http.ResponseWriter, r *http.Request) {
 
 		fmt.Fprintf(w, "your BMI is = %.2f ", bmi)
 	}
+}
+
+func (handler *server) incrementCounter(w http.ResponseWriter, r *http.Request) {
+	handler.counter++
+	fmt.Fprintf(w, strconv.Itoa(handler.counter))
 }
