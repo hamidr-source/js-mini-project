@@ -20,6 +20,8 @@ func New() *server {
 }
 
 func (s *server) Server(port int) {
+	http.Handle("/", http.FileServer(http.Dir("./static")))
+
 	http.HandleFunc("/hello", s.Hello)
 	http.HandleFunc("/bmi", s.Bmi)
 	http.HandleFunc("/counter", s.incrementCounter)
