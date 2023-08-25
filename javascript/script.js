@@ -1,8 +1,9 @@
-let allPrice = 0
+let userNumber = null
+let sum = 0
 
-for (let i = 0; i < 5; i++) {
-    allPrice = allPrice + Number(prompt("enter your product price"))
-    
+for(let i = 0 ; i <= 5 ; i++ ) {
+    userNumber = Number(prompt("enter "+ (i + 1) +" number"))
+
+    sum = sum + userNumber
 }
-
-alert("All price of basket:  "+ allPrice)
+console.log((sum/ 5))
