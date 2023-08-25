@@ -1,8 +1,7 @@
-let firstNumber = Number(prompt("first number! "));
-let secondNumber = Number(prompt("second number! "));
-let thirdNummber = Number(prompt("third number! "));
+let username = prompt("please enter your name :)")
 
-
-let avrage = (firstNumber + secondNumber + thirdNummber) / 3
-
-alert(avrage)
+if (username.toLowerCase() == 'ali') {
+    alert("your login successe")
+} else {
+    alert("your login in not successe")    
+}
