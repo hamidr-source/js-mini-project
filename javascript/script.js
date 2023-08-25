@@ -1,8 +1,8 @@
-let isEven = prompt("please enter number")
+let firstNumber = Number(prompt("first number! "));
+let secondNumber = Number(prompt("second number! "));
+let thirdNummber = Number(prompt("third number! "));
 
-if (isEven % 2 == 0 ) {
-    alert("is even")
-} else{
-    alert("is not even")
-}
 
+let avrage = (firstNumber + secondNumber + thirdNummber) / 3
+
+alert(avrage)
