@@ -1,10 +1,10 @@
-var userNumber = Number(prompt("please enter a number!"));
-var sum = 0;
+let userNumber = Number(prompt("please enter a number!"));
+let counter = 0;
 
-for (let index = 0; Math.floor(userNumber / 10 != 0); index++) {
-  sum = sum + (userNumber % 10);
+for (let index = 0; userNumber / 10 != 0; index++) {
+  counter++;
 
   userNumber = Math.floor(userNumber / 10);
 }
 
-console.log("sum is ", sum)
+console.log(counter);
