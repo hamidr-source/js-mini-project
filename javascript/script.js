@@ -1,10 +1,14 @@
-let userEntryWord = String(prompt("Please enter a word", ""))
-let wordArray = userEntryWord.split("")
+const taskArray = {
+  ali: ["html", "css", "js"],
+  amin: ["python", "AI", "chatGPT"],
+  hamid: ["golang", "database", "api"],
+  amir: ["vur", "react", "graphql"],
+};
 
-let reverseWord = wordArray.reverse()
+let newTask = prompt("Please enter a task: ")
+let employName = prompt("Please enter a employ name: ")
 
-if (reverseWord === wordArray) {
-    alert("it's ok")
-}else {
-    alert("it's not ok")
-}
+let employTask = taskArray[employName]
+employTask.push(newTask)
+
+console.log(employTask)
