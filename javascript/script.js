@@ -3,7 +3,10 @@ let userSecondNumber = Number(prompt("enter your second number"))
 let counter = 0
 for (let index = userFirstNumber; index < userSecondNumber; index++) {
     counter = index++
-    if (counter % 2 == 0){
+    if (counter % 2 === 0){
+        console.log(counter)
+    }else if(counter % 2 !== 0){
+        counter++ 
         console.log(counter)
     }
 }
