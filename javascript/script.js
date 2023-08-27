@@ -1,21 +1,7 @@
-let userFirstNumber = Number(prompt("Please enter first number : "));
-let userSecondNumber = Number(prompt("Please enter second number : "));
-let operations = prompt("Please enter your operation : \n + \n - \n * \n / \n **");
-
-switch (operations) {
-  case "+":
-    alert(userFirstNumber + userSecondNumber)
-  case "-": 
-    alert(userFirstNumber - userSecondNumber)
-  case "*":  
-    alert(userFirstNumber * userSecondNumber)
-  case "/":
-    alert(userFirstNumber / userSecondNumber)
-  case "**":
-    alert(userFirstNumber ** userSecondNumber)
-    break;
-
-  default: 
-    alert("Please enter current operation!!!")
-    break;
+let userCharacter = prompt("Enter your Character")
+let line = prompt("Enter your line")
+let sum = ""
+for (let index = 0; index < line; index++) {
+  sum += userCharacter
+  console.log(sum)
 }
