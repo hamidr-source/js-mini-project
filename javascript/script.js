@@ -1,14 +1,30 @@
-const taskArray = {
-  ali: ["html", "css", "js"],
-  amin: ["python", "AI", "chatGPT"],
-  hamid: ["golang", "database", "api"],
-  amir: ["vur", "react", "graphql"],
-};
+// All question
+const questions = [
+  { id: 1, title: "2 + 2", answer: "4" },
+  { id: 2, title: "4 * 2", answer: "8" },
+  { id: 3, title: "8 + 10", answer: "18" },
+  { id: 4, title: "4 + 4", answer: "8" },
+  { id: 5, title: "4 * 4", answer: "16" },
+];
 
-let newTask = prompt("Please enter a task: ")
-let employName = prompt("Please enter a employ name: ")
+// User score
+let score = 0;
 
-let employTask = taskArray[employName]
-employTask.push(newTask)
 
-console.log(employTask)
+// User answer 
+let userAnswer = "";
+
+
+questions.forEach(function (question) {
+
+  // Prompt questions
+  let userAnswer = prompt("Please enter your answer \n"+ question.title + "    ?");
+
+  // Check  user answer is correct or wrong 
+  if (userAnswer === question.answer) {
+    score++
+    alert("Your answer is correct\n score:  "+ score)
+  }else {
+    alert("Your answer is wrong!!!")
+  }
+});
