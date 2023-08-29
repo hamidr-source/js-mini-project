@@ -7,10 +7,42 @@ const citiesData = [
 ];
 
 const images = [
-    "./img/'Porsche 911 Fuji Retro' Poster by Pixaverse _ Displate.jpeg",
-    "./img/7628941.jpg",
-    "./img/[2560x1600] Great Wave Off Kanagawa (re-upload).jpeg",
-    "./img/sky.jpg",
-    "./img/Levi Ackerman wallpaper by _natsuke - Download on ZEDGE™ _ 0fbc.jpeg",
-    "./img/download (2).jpeg"
-]
+  "./img/Great.jpeg",
+  "./img/7628941.jpg'",
+  "./img/Great.jpeg",
+  "./img/download.jpeg",
+  "./levi.jpeg",
+  "./img/sky.jpg",
+];
+
+const $ = document;
+let input = $.querySelector(".search-bar");
+let btn = $.querySelector(".btn");
+
+btn.addEventListener("click", function () {
+  let inputValue = input.value;
+  let mainCity =  citiesData.find(function (cityData) {
+    return inputValue === cityData.city
+  })
+
+
+  if (mainCity) {
+    $.querySelector(".weather").classList.remove("loading");
+    $.querySelector(".city").innerHTML = "Weather in " + mainCity.city;
+    $.querySelector(".temp").innerHTML = mainCity.temp + "°C";
+    $.querySelector(".description").innerHTML = mainCity.weather;
+    $.querySelector(".humidity").innerHTML =
+      "Humidity :  " + mainCity.humidity + "%";
+    $.querySelector(".wind").innerHTML =
+      "Wind speed :   " + mainCity.windSpeed + "km/h";
+  } else {
+    alert("PLease enter a current city")
+  }
+});
+
+
+
+setInterval(function () {
+  let randomIndex = Math.floor(Math.random() * 6);
+  $.body.style.backgroundImage = `url(${images[randomIndex]})`;
+}, 5000);
