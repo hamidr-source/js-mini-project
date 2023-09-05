@@ -4,22 +4,23 @@
   box-sizing: border-box;
 }
 body{
-  background-color: #9ab8ba;
+  background-color: #f58d0680;
   color: white;
   font-family: sans-serif;
   min-height: 100vh;
 }
 h1{
   background-image: -webkit-linear-gradient(
-      110deg,
-      #7d69aa,
-      #c775e7
+      200deg,
+      #3faf71,
+      #429c98
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 header{ 
   font-size: 1.5rem;
+  margin-top: .5em;
 } 
 header,
 form{
@@ -36,7 +37,7 @@ form{
   background-color: white;
 }
 .todo-btn{
-  color: #9ab8ba;
+  color: #f58d0680;
   background-color: white;
   cursor: pointer;
   transition: all .5s ease;
@@ -48,7 +49,7 @@ form{
   border-bottom-left-radius: .5em;
 }
 .todo-btn:hover{
-  background: #9ab8ba;
+  background: #f58d0680;
   color: white;
   box-shadow:
   0 0 2px #9ab8ba,
@@ -83,7 +84,7 @@ form{
 }
 .trash-btn,
 .completed-btn{
-  background: #f7383850;
+  background: #f73838;
   color: white;
   border: none;
   padding: 1rem;
@@ -91,7 +92,7 @@ form{
   font-size: 1rem;
 }
 .completed-btn{
-  background: rgba(56, 156, 56, 0.411);
+  background: rgb(56, 156, 56);
 }
 .todo-item{
   padding: 0rem 0.5rem;
@@ -99,4 +100,18 @@ form{
 .completed{
   text-decoration: line-through;
   opacity: 0.5;
+}
+.alert-div {
+  background-color: rgb(223, 28, 28);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  font-size: 15px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 999;
+  right: 10px;
+  top: 10px;
+  transition: all 1s linear;
 }
