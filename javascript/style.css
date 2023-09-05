@@ -83,7 +83,7 @@ form{
 }
 .trash-btn,
 .completed-btn{
-  background: #f7383850;
+  background: rgb(250, 59, 59);
   color: white;
   border: none;
   padding: 1rem;
@@ -91,7 +91,7 @@ form{
   font-size: 1rem;
 }
 .completed-btn{
-  background: rgba(56, 156, 56, 0.411);
+  background: rgba(0, 136, 0, 0.411);
 }
 .todo-item{
   padding: 0rem 0.5rem;

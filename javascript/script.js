@@ -2,8 +2,7 @@ const $ = document;
 const todoInput = $.querySelector(".todo-input");
 const todoBtn = $.querySelector(".todo-btn");
 const todoList = $.querySelector(".todo-list");
-let isDone = false
-
+const alertDiv = $.querySelector(".alert-div");
 
 todoBtn.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheckTodo);
@@ -23,6 +22,9 @@ function addTodo(event) {
 
   if (todoValue !== "") {
     console.log(todoValue);
+    alertDiv.style.display = "inline";
+    alertDiv.innerHTML = "Task Added success !";
+    alertDiv.style.backgroundColor = "rgba(0, 136, 0, 0.411)";
 
     todoList.appendChild(todoDiv);
     todoDiv.classList.add("todo");
@@ -34,19 +36,24 @@ function addTodo(event) {
 
     todoInput.value = "";
   } else {
-    console.log("Enter a task");
+    alertDiv.style.display = "inline";
+    alertDiv.innerHTML = "Please enter a task !";
+    alertDiv.style.backgroundColor = "rgb(223, 28, 28)";
   }
+
+  setTimeout(function () {
+    alertDiv.style.display = "none";
+  }, 3000);
 }
 
 function removeTodo(event) {
   console.log(event.target);
 }
 
-function deleteCheckTodo (event) {
-
-  if (event.target.classList.value === "trash-btn"){
-    event.target.parentElement.remove()
+function deleteCheckTodo(event) {
+  if (event.target.classList.value === "trash-btn") {
+    event.target.parentElement.remove();
   } else {
-    event.target.parentElement.classList.add("completed")
- }
+    event.target.parentElement.classList.toggle("completed");
+  }
 }
