@@ -40,6 +40,12 @@ form{
   background-color: white;
   cursor: pointer;
   transition: all .5s ease;
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
+}
+.todo-input{
+  border-top-left-radius: .5em;
+  border-bottom-left-radius: .5em;
 }
 .todo-btn:hover{
   background: #9ab8ba;
