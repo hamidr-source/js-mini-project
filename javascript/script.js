@@ -1,47 +1,52 @@
-const $ = document
+const $ = document;
 const todoInput = $.querySelector(".todo-input");
 const todoBtn = $.querySelector(".todo-btn");
 const todoList = $.querySelector(".todo-list");
-const alertDiv = $.querySelector(".alert-div");
-const todoDiv = $.querySelector('.hidden-todo')
-const completeBtn = $.querySelector('.completed-btn')
-const trashBtn = $.querySelector('.trash-btn')
+let isDone = false
+
 
 todoBtn.addEventListener("click", addTodo);
-
+todoList.addEventListener("click", deleteCheckTodo);
 
 function addTodo(event) {
   event.preventDefault();
 
-  if (todoInput.value !== "") {
-    const inputValue = todoInput.value;
+  const todoValue = todoInput.value;
+  const todoDiv = $.createElement("div");
+  const liItem = $.createElement("li");
+  const completeBtn = $.createElement("button");
+  completeBtn.innerHTML = '<i class="fas fa-check"></i>';
+  completeBtn.classList.add("completed-btn");
+  const trashBtn = $.createElement("button");
+  trashBtn.innerHTML = '<i class="fas fa-trash"></i>';
+  trashBtn.classList.add("trash-btn");
 
-    const liItems = $.createElement("li");
+  if (todoValue !== "") {
+    console.log(todoValue);
 
     todoList.appendChild(todoDiv);
-    todoDiv.classList.remove("hidden-todo")
     todoDiv.classList.add("todo");
-
-    todoDiv.appendChild(liItems);
-    liItems.innerHTML = inputValue;
-    liItems.classList.add("todo-item");
+    todoDiv.appendChild(liItem);
+    liItem.innerHTML = todoValue;
+    liItem.classList.add("todo-item");
     todoDiv.appendChild(completeBtn);
     todoDiv.appendChild(trashBtn);
 
-    alertDiv.style.display = "inline";
-    alertDiv.innerHTML = "Task added";
-    alertDiv.style.background = "rgb(56, 156, 56)";
-
     todoInput.value = "";
   } else {
-    alertDiv.style.display = "inline";
-    alertDiv.innerHTML = "Please enter a task";
-    alertDiv.style.background = "rgb(223, 28, 28)";
+    console.log("Enter a task");
   }
-
-  setTimeout(function () {
-    alertDiv.style.display = "none";
-  }, 2500);
 }
 
+function removeTodo(event) {
+  console.log(event.target);
+}
 
+function deleteCheckTodo (event) {
+
+  if (event.target.classList.value === "trash-btn"){
+    event.target.parentElement.remove()
+  } else {
+    event.target.parentElement.classList.add("completed")
+ }
+}
