@@ -69,6 +69,9 @@ form{
   min-width: 30%;
   list-style: none;
 }
+.hidden-todo{
+  display: none;
+}
 .todo{
   margin: 0.5rem;
   background: white;
