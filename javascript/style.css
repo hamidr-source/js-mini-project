@@ -89,9 +89,18 @@ form{
   padding: 1rem;
   cursor: pointer;
   font-size: 1rem;
+  transition: all ease .5s;
 }
 .completed-btn{
   background: rgba(0, 136, 0, 0.411);
+}
+.trash-btn:hover{
+  background: white;
+  color: rgb(250, 59, 59);
+}
+.completed-btn:hover {
+  background: white;
+  color: rgba(0, 136, 0, 0.411);
 }
 .todo-item{
   padding: 0rem 0.5rem;

@@ -53,7 +53,7 @@ function removeTodo(event) {
 function deleteCheckTodo(event) {
   if (event.target.classList.value === "trash-btn") {
     event.target.parentElement.remove();
-  } else {
+  } else if (event.target.classList.value === "completed-btn") {
     event.target.parentElement.classList.toggle("completed");
   }
 }
