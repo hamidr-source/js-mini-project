@@ -8,11 +8,13 @@
   <title>Note App</title>
 </head>
 <body>
+
+  <div class="alert"></div>
   <header>
     <h1>Note App</h1>
   </header>
   <section>
-    <input type="text" class="note-input" placeholder="Add somethings here ..." />
+    <input type="text" class="note-input" placeholder="Add somethings here ..." maxlength="70" required />
     <button class="add-btn"><span class="fas fa-plus-square"></span></button>
     <button class="delete-btn"><span class="fas fa-eraser"></span></button>
   </section>
@@ -29,7 +31,9 @@
     <div class='color-box' style="background-color: #D687FC;"></div>
     <div class='color-box' style="background-color: #FF89FD;"></div>
   </div>
-  <div class="container"></div>
+  <div class="container">
+    <ul class="note-list"></ul>
+  </div>
 
 
 
