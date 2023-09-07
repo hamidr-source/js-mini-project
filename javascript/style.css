@@ -139,3 +139,6 @@ button {
   top: 10px;
   transition: all 1s linear;
 }
+span {
+  pointer-events: none;
+}

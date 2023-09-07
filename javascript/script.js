@@ -3,12 +3,15 @@ const $ = document;
 const noteInput = $.querySelector(".note-input");
 const alertDiv = $.querySelector(".alert");
 const addBtn = $.querySelector(".add-btn");
+const deleteBtn = $.querySelector(".delete-btn");
 const noteList = $.querySelector(".note-list");
 
-noteInput.addEventListener("keypress", counterHandler);
-addBtn.addEventListener("click", addBtnHandler);
+noteInput.addEventListener("keypress", alertHandler);
+addBtn.addEventListener("click", addNoteHandler);
+deleteBtn.addEventListener("click", deleteValueHandler);
+noteList.addEventListener("click", deleteNoteHandler)
 
-function counterHandler() {
+function alertHandler() {
   if (noteInput.value.length >= 70) {
     alertDiv.style.display = "block";
     alertDiv.innerHTML = "You can't enter more than 75 words";
@@ -16,7 +19,11 @@ function counterHandler() {
   }
 }
 
-function addBtnHandler(event) {
+function deleteValueHandler() {
+  noteInput.value = "";
+}
+
+function addNoteHandler(event) {
   event.preventDefault();
 
   let inputValue = noteInput.value;
@@ -42,9 +49,17 @@ function addBtnHandler(event) {
     alertDiv.innerHTML = "Please enter a note";
     alertDiv.style.backgroundColor = "rgb(223, 28, 28)";
   }
-
-
 }
+
+function deleteNoteHandler (event) {
+  if (event.target.classList.value === "trash-btn") {
+    event.target.parentElement.remove()
+    alertDiv.style.display = "block";
+    alertDiv.innerHTML = "Note deleted !";
+    alertDiv.style.backgroundColor = "#7B84FC";
+  }
+}
+
 setInterval(function () {
   alertDiv.style.display = "none";
 }, 3500);
