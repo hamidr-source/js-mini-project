@@ -6,17 +6,23 @@ const addBtn = $.querySelector(".add-btn");
 const deleteBtn = $.querySelector(".delete-btn");
 const noteList = $.querySelector(".note-list");
 const colors = $.querySelectorAll(".color-box")
+const loader = $.querySelector(".loader")
 
 noteInput.addEventListener("keypress", alertHandler);
 addBtn.addEventListener("click", addNoteHandler);
 deleteBtn.addEventListener("click", deleteValueHandler);
 noteList.addEventListener("click", deleteNoteHandler)
+window.addEventListener("load", loadHandler)
 
 colors.forEach(function (color) {
   color.addEventListener("click", function () {
     noteInput.style.backgroundColor = color.style.backgroundColor
   })
 })
+
+function loadHandler () {
+  loader.classList.add("hidden")
+}
 
 function alertHandler() {
   if (noteInput.value.length >= 70) {
