@@ -1,21 +1,37 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SabzLearn | Js | 162</title>
-  <!-- Iconsout Link for Icons -->
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/solid.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
+  <title>Note App</title>
 </head>
 <body>
-  <div class="wrapper">
-    <form action="#">
-      <input type="text" spellcheck="false" placeholder="username" maxlength="19" required class="username" />
-      <i class="uis uis-at"></i>
-      <span class="counter">19</span>
-    </form>
+  <header>
+    <h1>Note App</h1>
+  </header>
+  <section>
+    <input type="text" class="note-input" placeholder="Add somethings here ..." />
+    <button class="add-btn"><span class="fas fa-plus-square"></span></button>
+    <button class="delete-btn"><span class="fas fa-eraser"></span></button>
+  </section>
+  <div class="color-select">
+    <div class='color-box' style="background-color: #fff;"></div>
+    <div class='color-box' style="background-color: #FFD37F;"></div>
+    <div class='color-box' style="background-color: #FFFA81;"></div>
+    <div class='color-box' style="background-color: #D5FA80;"></div>
+    <div class='color-box' style="background-color: #78F87F;"></div>
+    <div class='color-box' style="background-color: #79FBD6;"></div>
+    <div class='color-box' style="background-color: #79FDFE;"></div>
+    <div class='color-box' style="background-color: #7AD6FD;"></div>
+    <div class='color-box' style="background-color: #7B84FC;"></div>
+    <div class='color-box' style="background-color: #D687FC;"></div>
+    <div class='color-box' style="background-color: #FF89FD;"></div>
   </div>
+  <div class="container"></div>
+
+
 
   <script src="script.js"></script>
 </body>

@@ -1,8 +1,17 @@
-const usernameInput = document.querySelector(".username");
-let counter = document.querySelector(".counter");
+const $ = document;
 
-usernameInput.addEventListener("keydown", keyDownHandler);
+const noteInput = $.querySelector('.note-input')
+const addBtn = $.querySelector(".add-btn")
+const noteContainer = $.querySelector(".container")
 
-function keyDownHandler() {
-  counter.innerHTML = 19 - usernameInput.value.length;
+addBtn.addEventListener("click", addBtnHandler)
+
+function addBtnHandler (event) {
+  event.preventDefault()
+
+  let inputValue = noteInput.value
+  if (inputValue !== "") {
+    const newDiv = $.createElement('div')
+    newDiv.classList.add("note")
+  }
 }

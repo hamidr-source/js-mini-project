@@ -1,75 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: white;
+  font-family: sans-serif;
   min-height: 100vh;
-  background: linear-gradient(to top, #56e2d7 0%, #58cff1 100%);
+  background-color: #adffc2;
 }
-.wrapper{
-  background: #fff;
-  padding: 20px;
-  width: 450px;
-  border-radius: 5px;
-  box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+h1{
+  background-image: -webkit-linear-gradient(
+      110deg,
+      #7d69aa,
+      #c775e7
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.wrapper form{
-  height: 55px;
+header{ 
+  font-size: 1.5rem;
+} 
+header,
+section{
+  min-height: 16vh;
   display: flex;
-  position: relative;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
 }
-form i{
-  position: absolute;
-  width: 55px;
-  text-align: center;
-  font-size: 23px;
-  color: #c4c4c4;
-  pointer-events: none;
+
+.note-input,
+button {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border: none;
+  background-color: white;
 }
-form input:valid ~ i{
-  color: #58cff1;
-}
-form input{
-  height: 100%;
-  width: 100%;
+.note-input:focus{
   outline: none;
-  padding: 0 50px 0 45px;
-  font-size: 20px;
-  caret-color: #58cff1;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  transition: all 0.1s ease;
 }
-form input::selection{
-  color: #fff;
-  background: #58cff1;	
+
+.add-btn {
+  color: #00eeff;
+  background-color: white;
+  cursor: pointer;
+  transition: all .5s ease;
 }
-form input:focus,
-form input:valid{
-  border-color: #58cff1;
+.delete-btn {
+  color: #fa3030;
+  background-color: white;
+  cursor: pointer;
+  transition: all .5s ease;
 }
-form input::placeholder{
-  color: #c4c4c4;
+
+.add-btn:hover{
+  background: #00eeff;
+  color: white;
 }
-form .counter{
-  position: absolute;
-  right: 3px;
-  width: 55px;
-  font-size: 20px;
-  color: #c4c4c4;
-  text-align: center;
-  border-left: 1px solid #d8d8d8;
-  pointer-events: none;
+
+.delete-btn:hover{
+  background: #fa3030;
+  color: white;
 }
-form input:valid ~ .counter{
-  color: #58cff1;
-  border-color: #58cff1;
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.note{
+  margin: 0.5rem;
+  background: white;
+  color: black;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  transition: all .5s ease;
+}
+
+.color-select{
+  display: flex;
+  justify-content: center;
+  padding: 5px 10px 0 0;
+  margin-top: 0;
+}
+
+.color-box{
+  border: solid 1px #929292;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  margin-left: 5px;
+}
+.color-box:hover{
+  border: solid 2px #929292;
 }
