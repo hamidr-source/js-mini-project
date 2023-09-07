@@ -119,7 +119,8 @@ button {
   height: 18px;
   width: 18px;
   margin-left: 5px;
-  transition: all ease .7s;
+  transition: all ease .3s;
+  cursor: pointer;
 }
 .color-box:hover{
   border: solid 2px #dfdfdf;

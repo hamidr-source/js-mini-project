@@ -5,11 +5,18 @@ const alertDiv = $.querySelector(".alert");
 const addBtn = $.querySelector(".add-btn");
 const deleteBtn = $.querySelector(".delete-btn");
 const noteList = $.querySelector(".note-list");
+const colors = $.querySelectorAll(".color-box")
 
 noteInput.addEventListener("keypress", alertHandler);
 addBtn.addEventListener("click", addNoteHandler);
 deleteBtn.addEventListener("click", deleteValueHandler);
 noteList.addEventListener("click", deleteNoteHandler)
+
+colors.forEach(function (color) {
+  color.addEventListener("click", function () {
+    noteInput.style.backgroundColor = color.style.backgroundColor
+  })
+})
 
 function alertHandler() {
   if (noteInput.value.length >= 70) {
@@ -21,6 +28,7 @@ function alertHandler() {
 
 function deleteValueHandler() {
   noteInput.value = "";
+  noteInput.style.backgroundColor = "white"
 }
 
 function addNoteHandler(event) {
@@ -35,6 +43,8 @@ function addNoteHandler(event) {
     newDiv.appendChild(liItem);
     liItem.classList.add("note-item");
     liItem.innerHTML = inputValue;
+    newDiv.style.backgroundColor = noteInput.style.backgroundColor 
+    noteInput.style.backgroundColor = "white"
     const trashBtn = $.createElement("button");
     trashBtn.classList.add("trash-btn");
     trashBtn.innerHTML = '<span class="fas fa-multiply"></span>';
@@ -48,6 +58,7 @@ function addNoteHandler(event) {
     alertDiv.style.display = "block";
     alertDiv.innerHTML = "Please enter a note";
     alertDiv.style.backgroundColor = "rgb(223, 28, 28)";
+    noteInput.style.backgroundColor = "white"
   }
 }
 
