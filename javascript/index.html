@@ -1,45 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css">
-  <title>Note App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+<link rel="stylesheet" href="style.css"/>
+<title>Music Player</title>
 </head>
 <body>
-  <div class="loader">
-    <img src="Spinner-2.4s-237px.gif" alt="Loading..." />
-  </div>
-  <div class="alert"></div>
 
-  <header>
-    <h1>Note App</h1>
-  </header>
-  <section>
-    <input type="text" class="note-input" placeholder="Add somethings here ..." maxlength="70" required />
-    <button class="add-btn"><span class="fas fa-plus-square"></span></button>
-    <button class="delete-btn"><span class="fas fa-eraser"></span></button>
-  </section>
-  <div class="color-select">
-    <div class='color-box' style="background-color: #fff;"></div>
-    <div class='color-box' style="background-color: #FFD37F;"></div>
-    <div class='color-box' style="background-color: #FFFA81;"></div>
-    <div class='color-box' style="background-color: #D5FA80;"></div>
-    <div class='color-box' style="background-color: #78F87F;"></div>
-    <div class='color-box' style="background-color: #79FBD6;"></div>
-    <div class='color-box' style="background-color: #79FDFE;"></div>
-    <div class='color-box' style="background-color: #7AD6FD;"></div>
-    <div class='color-box' style="background-color: #7B84FC;"></div>
-    <div class='color-box' style="background-color: #D687FC;"></div>
-    <div class='color-box' style="background-color: #FF89FD;"></div>
-  </div>
-  <div class="container">
-    <ul class="note-list"></ul>
-  </div>
+    <div class="bg-container">
+        <img src="" alt="" id="background">
+    </div>
+    <div class="player-container">
+        <!-- Song -->
+        <div class="img-container">
+            <img src="" alt="" id="cover" class="active">
+        </div>
+        <h2 id="title"></h2>
+        <h3 id="artist"></h3>
+        <audio src=""></audio>
 
+        <!-- Progress -->
+        <div class="progress-container" id="progress-container">
+            <div class="progress" id="progress"></div>
+            <div class="duration-wrapper">
+                <span id="current-time"></span>
+                <span id="duration"></span>
+            </div>
+        </div>
+        <!-- Controls -->
+        <div class="player-controls">
+            <i class="fas fa-backward" id="prev" title="Previous"></i>
+            <i class="fas fa-play main-button" id="play" title="Play"></i>
+            <i class="fas fa-forward" id="next" title="Next"></i>
+        </div>
+    </div>
 
+<script src="script.js"></script>
 
-  <script src="script.js"></script>
 </body>
-</html>
+</html> 
