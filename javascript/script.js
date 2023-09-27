@@ -29,4 +29,21 @@ const musicData = [
   },
 ];
 
+function songLoad (musicData) {
+  mediaTitle.textContent = musicData.displayName
+  mediaArtist.textContent = musicData.artist
+  mediaAudio.src = musicData.path
+  changeCover(musicData.cover)
+  console.log(mediaAudio.src)
+}
 
+function changeCover (cover) {
+
+  mediaCover.classList.remove("active")
+  setTimeout(function () {
+    mediaCover.src = cover
+    mediaCover.classList.add("active")
+  }, 100)
+  bgContainer.src = cover
+}
+// songLoad(musicData[1])
