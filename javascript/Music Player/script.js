@@ -87,13 +87,13 @@ function prevMusic() {
   playMusic();
 }
 
-function updateProgressBar (event) {
-  const duration = event.srcElement.duration
-  const currentTime = event.srcElement.currentTime
-  const progressPercent = (currentTime / duration) * 100
+function updateProgressBar(event) {
+  const duration = event.srcElement.duration;
+  const currentTime = event.srcElement.currentTime;
+  const progressPercent = (currentTime / duration) * 100;
   progress.style.width = progressPercent + "%";
-  const durationMinutes = Math.floor(duration / 60)
-  let durationSeconds = Math.floor(duration % 60)
+  const durationMinutes = Math.floor(duration / 60);
+  let durationSeconds = Math.floor(duration % 60);
   if (durationSeconds < 10) {
     durationSeconds = "0" + durationSeconds;
   }
@@ -109,11 +109,11 @@ function updateProgressBar (event) {
 }
 
 function setProgressBar(event) {
-  const width = this.clientWidth
-  const clickX = event.offsetX
-  console.log(clickX)
-  const musicDuration = mediaAudio.duration
-  mediaAudio.currentTime = (clickX / width) * musicDuration
+  const width = this.clientWidth;
+  const clickX = event.offsetX;
+  console.log(clickX);
+  const musicDuration = mediaAudio.duration;
+  mediaAudio.currentTime = (clickX / width) * musicDuration;
 }
 
 playBtn.addEventListener("click", function () {
@@ -126,5 +126,20 @@ playBtn.addEventListener("click", function () {
 nextBtn.addEventListener("click", nextMusic);
 prevBtn.addEventListener("click", prevMusic);
 mediaAudio.addEventListener("ended", nextMusic);
-mediaAudio.addEventListener("timeupdate", updateProgressBar)
-progressContainer.addEventListener("click", setProgressBar)
+mediaAudio.addEventListener("timeupdate", updateProgressBar);
+progressContainer.addEventListener("click", setProgressBar);
+$.body.addEventListener("keydown", function (event) {
+  if (event.code == "Space") {
+    if (isPlaying) {
+      pauseMusic();
+    } else {
+      playMusic();
+    }
+  }
+  if (event.code == "ArrowRight") {
+    nextMusic();
+  }
+  if (event.code == "ArrowLeft") {
+    prevMusic();
+  }
+});
