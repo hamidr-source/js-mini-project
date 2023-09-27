@@ -4,6 +4,7 @@ const mediaCover = $.querySelector("#cover");
 const mediaTitle = $.querySelector("#title");
 const mediaArtist = $.querySelector("#artist");
 const mediaAudio = $.querySelector("audio");
+const playBtn = $.querySelector("#play")
 
 const musicData = [
   {
@@ -29,6 +30,16 @@ const musicData = [
   },
 ];
 
+let isPlaying = false 
+
+function playMusic () {
+  isPlaying = true
+  playBtn.classList.replace("fa-play", "fa-pause")
+  playBtn.setAttribute("title", "pause")
+  mediaAudio.play()
+}
+ 
+
 function songLoad (musicData) {
   mediaTitle.textContent = musicData.displayName
   mediaArtist.textContent = musicData.artist
@@ -46,4 +57,6 @@ function changeCover (cover) {
   }, 100)
   bgContainer.src = cover
 }
-// songLoad(musicData[1])
+songLoad(musicData[0])
+
+playBtn.addEventListener("click", playMusic)
