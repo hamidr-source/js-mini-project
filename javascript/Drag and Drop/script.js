@@ -14,5 +14,5 @@ function dragOverHandler (event) {
     event.preventDefault()
 }
 
-// drag -> ondragstart, ondrag, ondragend
-// drop ->  
+// dragged -> onDragStart, onDrag, onDragEnd
+// dropped -> ondDragEnter, onDragOver, onDragLeave, onDrop 
