@@ -41,9 +41,22 @@ function todoGenerator(todoList) {
     trashBtn = $.createElement("button");
     trashBtn.classList.add("trash-btn");
     trashBtn.innerHTML = '<i class="fas fa-trash"></i>';
+    trashBtn.setAttribute("onclick", "deleteTodo(" + todo.id + ")")
     todoDivElem.append(todoLiItem, completeBtn, trashBtn);
     todoListElem.appendChild(todoDivElem);
   });
+}
+
+function deleteTodo (todoId) {
+  let localStorageTodos = JSON.parse(localStorage.getItem("todos"))
+  todoArray = localStorageTodos
+
+  let todoIndex = todoArray.findIndex(function (todo) {
+    return todo.id === todoId
+  })
+  todoArray.splice(todoIndex, 1)
+  setLocalStorage(todoArray)
+  todoGenerator(todoArray)
 }
 
 function deleteAllTodos(event) {
