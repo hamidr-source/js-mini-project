@@ -3,6 +3,7 @@ const todoInput = $.querySelector(".todo-input");
 const todoBtn = $.querySelector(".todo-btn");
 const deleteAllTodoBtn = $.querySelector(".delete-btn");
 const todoListElem = $.querySelector(".todo-list");
+const alertDiv = $.querySelector(".alert-div")
 
 let todoArray = [];
 
@@ -19,6 +20,12 @@ function addNewTodo(event) {
     todoArray.push(newTodoObj);
     setLocalStorage(todoArray);
     todoGenerator(todoArray);
+  } else {
+    alertDiv.style.display = "block";
+    alertDiv.innerHTML = "Please enter a task";
+    setTimeout( function () {
+      alertDiv.style.display = "none";
+    }, 3000)
   }
   todoInput.value = "";
 }

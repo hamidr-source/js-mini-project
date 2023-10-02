@@ -110,3 +110,17 @@ form {
 i {
   pointer-events: none;
 }
+.alert-div {
+  background-color: rgb(223, 28, 28);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  font-size: 15px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 999;
+  right: 10px;
+  top: 10px;
+  transition: all 1s linear;
+}
