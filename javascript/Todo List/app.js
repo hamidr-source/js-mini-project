@@ -32,31 +32,48 @@ function todoGenerator(todoList) {
   todoList.forEach(function (todo) {
     todoDivElem = $.createElement("div");
     todoDivElem.className = "todo";
+    if (todo.complete === true) {
+      todoDivElem.classList.add("completed");
+    }
     todoLiItem = $.createElement("li");
     todoLiItem.className = "todo-item";
     todoLiItem.innerHTML = todo.title;
     completeBtn = $.createElement("button");
     completeBtn.classList.add("completed-btn");
     completeBtn.innerHTML = '<i class="fas fa-check"></i>';
+    completeBtn.setAttribute("onclick", "checkTodo(" + todo.id + ")");
     trashBtn = $.createElement("button");
     trashBtn.classList.add("trash-btn");
     trashBtn.innerHTML = '<i class="fas fa-trash"></i>';
-    trashBtn.setAttribute("onclick", "deleteTodo(" + todo.id + ")")
+    trashBtn.setAttribute("onclick", "deleteTodo(" + todo.id + ")");
     todoDivElem.append(todoLiItem, completeBtn, trashBtn);
     todoListElem.appendChild(todoDivElem);
   });
 }
 
-function deleteTodo (todoId) {
-  let localStorageTodos = JSON.parse(localStorage.getItem("todos"))
-  todoArray = localStorageTodos
+function deleteTodo(todoId) {
+  let localStorageTodos = JSON.parse(localStorage.getItem("todos"));
+  todoArray = localStorageTodos;
 
   let todoIndex = todoArray.findIndex(function (todo) {
-    return todo.id === todoId
-  })
-  todoArray.splice(todoIndex, 1)
-  setLocalStorage(todoArray)
-  todoGenerator(todoArray)
+    return todo.id === todoId;
+  });
+  todoArray.splice(todoIndex, 1);
+  setLocalStorage(todoArray);
+  todoGenerator(todoArray);
+}
+
+function checkTodo(todoId) {
+  let localStorageTodos = JSON.parse(localStorage.getItem("todos"));
+  todoArray = localStorageTodos;
+
+  todoArray.forEach(function (todo) {
+    if (todo.id === todoId) {
+      todo.complete = !todo.complete;
+    }
+  });
+  setLocalStorage(todoArray);
+  todoGenerator(todoArray);
 }
 
 function deleteAllTodos(event) {
