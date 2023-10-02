@@ -15,10 +15,12 @@ function addNewTodo(event) {
     title: inputValue,
     complete: false,
   };
+  if (todoInput.value !== "") {
+    todoArray.push(newTodoObj);
+    setLocalStorage(todoArray);
+    todoGenerator(todoArray);
+  }
   todoInput.value = "";
-  todoArray.push(newTodoObj);
-  setLocalStorage(todoArray);
-  todoGenerator(todoArray);
 }
 
 function setLocalStorage(todoList) {
