@@ -20,6 +20,9 @@ function addBook(event) {
     bookGenerator(allBooks);
     setLocalStorage(allBooks);
   }
+  bookTitle.value = ""
+  bookAuthor.value = ""
+  bookYear.value = ""
 }
 
 function setLocalStorage (books) {
