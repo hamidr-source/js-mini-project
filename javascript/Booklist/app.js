@@ -13,12 +13,17 @@ function addBook(event) {
     title: bookTitle.value,
     author: bookAuthor.value,
     year: bookYear.value,
+    inventory: true
   };
   allBooks.push(book);
   if (bookTitle.value !== "") {
     bookGenerator(allBooks);
-    getLocalStorage(allBooks);
+    setLocalStorage(allBooks);
   }
+}
+
+function setLocalStorage (books) {
+    localStorage.setItem("books", JSON.stringify(books))
 }
 
 function bookGenerator(books) {
@@ -26,6 +31,7 @@ function bookGenerator(books) {
   bookList.innerHTML = ""
   books.forEach(function (book) {
     tableRow = $.createElement("tr")
+    tableRow.setAttribute("onclick", "endInventory(" + book.id + ")")
     title = $.createElement("td")
     author = $.createElement("td")
     year = $.createElement("td")
@@ -36,5 +42,9 @@ function bookGenerator(books) {
     bookList.appendChild(tableRow) 
   });
 }
+
+// function endInventory (bookId) {
+
+// }
 
 btn.addEventListener("click", addBook);
