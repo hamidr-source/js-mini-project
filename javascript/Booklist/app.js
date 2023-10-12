@@ -32,6 +32,11 @@ function bookGenerator(books) {
   books.forEach(function (book) {
     tableRow = $.createElement("tr")
     tableRow.setAttribute("onclick", "endInventory(" + book.id + ")")
+    if (!book.inventory) {
+        tableRow.style.cssText = "text-decoration: line-through ; opacity: 0.6 ;"
+    } else {
+        tableRow.style.cssText = "text-decoration: none ; opacity: 1 ;"
+    }
     title = $.createElement("td")
     author = $.createElement("td")
     year = $.createElement("td")
@@ -43,8 +48,16 @@ function bookGenerator(books) {
   });
 }
 
-// function endInventory (bookId) {
-
-// }
+function endInventory (bookId) {
+    let getBook = JSON.parse(localStorage.getItem("books"))
+    allBooks = getBook
+    allBooks.forEach(function (book) {
+        if (bookId === book.id) {
+            book.inventory = !book.inventory
+        }
+    })
+    setLocalStorage(allBooks)
+    bookGenerator(allBooks)
+}
 
 btn.addEventListener("click", addBook);
