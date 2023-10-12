@@ -60,4 +60,15 @@ function endInventory (bookId) {
     bookGenerator(allBooks)
 }
 
+function getLocalStorage () {
+    let getBook = JSON.parse(localStorage.getItem("books"))
+    if (getBook) {
+        allBooks = getBook
+    } else {
+        allBooks = []
+    }
+    bookGenerator(allBooks)
+}
+
+window .addEventListener("load", getLocalStorage)
 btn.addEventListener("click", addBook);
