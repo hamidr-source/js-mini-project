@@ -33,20 +33,40 @@ const pagination = document.querySelector("#pagination");
 let currentPage = 1;
 let rowCount = 5;
 
-function displayUserList (allUserArr, userListContainer, currentPage, rowCount) {
-    userListContainer.innerHTML = ""
+function displayUserList(allUserArr, userListContainer, currentPage, rowCount) {
+  userListContainer.innerHTML = "";
 
-    let endIndex = currentPage * rowCount
-    let startIndex = endIndex - rowCount
+  let endIndex = currentPage * rowCount;
+  let startIndex = endIndex - rowCount;
 
-    let paginatedUsers = allUserArr.slice(startIndex, endIndex)
-    paginatedUsers.forEach(function (user) {
-        console.log(user)  
-        const divElem = document.createElement("div")
-        divElem.innerHTML = user.name + " " + user.family
-        divElem.classList.add("item")
-        userListContainer.appendChild(divElem)
-    });
+  let paginatedUsers = allUserArr.slice(startIndex, endIndex);
+  paginatedUsers.forEach(function (user) {
+    const divElem = document.createElement("div");
+    divElem.innerHTML = user.name + " " + user.family;
+    divElem.classList.add("item");
+    userListContainer.appendChild(divElem);
+  });
 }
 
-displayUserList(userList, userListContainer, currentPage, rowCount)
+function setupPagination(allUserArr, userListContainer, rowCount) {
+  userListContainer.innerHTMl = "";
+
+  let pageCount = Math.ceil(allUserArr.length / rowCount);
+
+  for (let index = 1; index < pageCount + 1; index++) {
+    let btn = paginationButtonGenerator(index, allUserArr);
+    pagination.appendChild(btn);
+  }
+}
+
+function paginationButtonGenerator(page, allUserArr) {
+    const btn = document.createElement("button")
+    btn.innerHTML = page
+    if (page === currentPage) {
+        btn.classList.add("active")
+    }
+    return btn
+}
+
+setupPagination(userList, userListContainer, rowCount);
+displayUserList(userList, userListContainer, currentPage, rowCount);
