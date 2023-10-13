@@ -60,19 +60,19 @@ function setupPagination(allUserArr, userListContainer, rowCount) {
 }
 
 function paginationButtonGenerator(page, allUserArr) {
-    const btn = document.createElement("button")
-    btn.innerHTML = page
-    if (page === currentPage) {
-        btn.classList.add("active")
-    }
-    btn.addEventListener("click", function () {
-        currentPage = page
-        displayUserList(allUserArr, userListContainer, currentPage, rowCount);
-        let prevBtn = document.querySelector("button.active")
-        prevBtn.classList.remove("active")
-        btn.classList.add("active")
-    })
-    return btn
+  const btn = document.createElement("button");
+  btn.innerHTML = page;
+  if (page === currentPage) {
+    btn.classList.add("active");
+  }
+  btn.addEventListener("click", function () {
+    currentPage = page;
+    displayUserList(allUserArr, userListContainer, currentPage, rowCount);
+    let prevBtn = document.querySelector("button.active");
+    prevBtn.classList.remove("active");
+    btn.classList.add("active");
+  });
+  return btn;
 }
 
 setupPagination(userList, userListContainer, rowCount);
