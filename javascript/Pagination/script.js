@@ -30,3 +30,17 @@ const userList = [
 const userListContainer = document.querySelector("#list");
 const pagination = document.querySelector("#pagination");
 
+let currentPage = 1;
+let rowCount = 5;
+
+function displayUserList (allUserArr, userListContainer, currentPage, rowCount) {
+    userListContainer.innerHTML = ""
+
+    let endIndex = currentPage * rowCount
+    let startIndex = endIndex - rowCount
+
+    let paginatedUsers = allUserArr.slice(startIndex, endIndex)
+    console.log(paginatedUsers)
+}
+
+displayUserList(userList, userListContainer, currentPage, rowCount)
