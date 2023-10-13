@@ -65,6 +65,13 @@ function paginationButtonGenerator(page, allUserArr) {
     if (page === currentPage) {
         btn.classList.add("active")
     }
+    btn.addEventListener("click", function () {
+        currentPage = page
+        displayUserList(allUserArr, userListContainer, currentPage, rowCount);
+        let prevBtn = document.querySelector("button.active")
+        prevBtn.classList.remove("active")
+        btn.classList.add("active")
+    })
     return btn
 }
 
