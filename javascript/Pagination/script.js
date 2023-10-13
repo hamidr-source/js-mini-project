@@ -40,7 +40,13 @@ function displayUserList (allUserArr, userListContainer, currentPage, rowCount) 
     let startIndex = endIndex - rowCount
 
     let paginatedUsers = allUserArr.slice(startIndex, endIndex)
-    console.log(paginatedUsers)
+    paginatedUsers.forEach(function (user) {
+        console.log(user)  
+        const divElem = document.createElement("div")
+        divElem.innerHTML = user.name + " " + user.family
+        divElem.classList.add("item")
+        userListContainer.appendChild(divElem)
+    });
 }
 
 displayUserList(userList, userListContainer, currentPage, rowCount)
