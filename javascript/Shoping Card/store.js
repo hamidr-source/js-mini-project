@@ -12,12 +12,13 @@ const shopCardsContainer = document.querySelector(".shop-items")
 productsData.forEach(function (product) {
     const productCard = document.createElement("div")
     productCard.classList.add("shop-item")
-
+    const productImage = document.createElement("img")
+    productImage.classList.add("shop-item-image")
+    productImage.setAttribute("src", product.img)
     const productTitle = document.createElement("span")
     productTitle.classList.add("shop-item-title")
     productTitle.innerHTML = product.title
 
-
-    productCard.append(productTitle)
+    productCard.append(productImage ,productTitle)
     shopCardsContainer.appendChild(productCard)
 })
