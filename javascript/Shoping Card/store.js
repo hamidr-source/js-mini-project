@@ -20,13 +20,14 @@ productsData.forEach(function (product) {
     productTitle.innerHTML = product.title
     const productPrice = document.createElement("span")
     productPrice.classList.add("shop-item-price")
-    productPrice.innerHTML = product.price + "$"
+    productPrice.innerHTML = product.price +  " $"
     const productDetails = document.createElement("div")
     productDetails.classList.add("shop-item-details")
     const addProductInBasketBtn = document.createElement("button")
     addProductInBasketBtn.innerHTML = 'ADD TO CART'
     addProductInBasketBtn.className = 'btn btn-primary shop-item-button'
-    productDetails.append(productPrice, productTitle)
-    productCard.append(productImage, productDetails, addProductInBasketBtn)
+    productDetails.append(productPrice, addProductInBasketBtn )
+    productCard.append(productTitle ,productImage, productDetails)
     shopCardsContainer.appendChild(productCard)
 })
+
