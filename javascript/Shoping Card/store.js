@@ -18,7 +18,15 @@ productsData.forEach(function (product) {
     const productTitle = document.createElement("span")
     productTitle.classList.add("shop-item-title")
     productTitle.innerHTML = product.title
-
-    productCard.append(productImage ,productTitle)
+    const productPrice = document.createElement("span")
+    productPrice.classList.add("shop-item-price")
+    productPrice.innerHTML = product.price + "$"
+    const productDetails = document.createElement("div")
+    productDetails.classList.add("shop-item-details")
+    const addProductInBasketBtn = document.createElement("button")
+    addProductInBasketBtn.innerHTML = 'ADD TO CART'
+    addProductInBasketBtn.className = 'btn btn-primary shop-item-button'
+    productDetails.append(productPrice, productTitle)
+    productCard.append(productImage, productDetails, addProductInBasketBtn)
     shopCardsContainer.appendChild(productCard)
 })
