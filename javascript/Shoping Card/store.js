@@ -7,4 +7,17 @@ const productsData = [
     { id: 6, title: 'Shirt', price: 65.33, img: 'Images/Shirt.png' },
 ]
 
+const shopCardsContainer = document.querySelector(".shop-items")
 
+productsData.forEach(function (product) {
+    const productCard = document.createElement("div")
+    productCard.classList.add("shop-item")
+
+    const productTitle = document.createElement("span")
+    productTitle.classList.add("shop-item-title")
+    productTitle.innerHTML = product.title
+
+
+    productCard.append(productTitle)
+    shopCardsContainer.appendChild(productCard)
+})
