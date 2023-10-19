@@ -8,6 +8,7 @@ const productsData = [
 ];
 
 const shopCardsContainer = document.querySelector(".shop-items");
+const userBasketCard = document.querySelector(".cart-items");
 
 let userBasket = [];
 
@@ -27,8 +28,8 @@ productsData.forEach(function (product) {
   productDetails.classList.add("shop-item-details");
   const addProductToBasketBtn = document.createElement("button");
   addProductToBasketBtn.addEventListener("click", function () {
-    addProductToBasket(product.id)
-  })
+    addProductToBasket(product.id);
+  });
   addProductToBasketBtn.innerHTML = "ADD TO CART";
   addProductToBasketBtn.className = "btn btn-primary shop-item-button";
   productDetails.append(productPrice, addProductToBasketBtn);
@@ -36,10 +37,42 @@ productsData.forEach(function (product) {
   shopCardsContainer.appendChild(productCard);
 });
 
-function addProductToBasket (productId) {
-    let mainProduct = productsData.find(function (product) {
-        return product.id === productId
-    })
-    userBasket.push(mainProduct)
-    userBasketGenerator(userBasket)
+function addProductToBasket(productId) {
+  let mainProduct = productsData.find(function (product) {
+    return product.id === productId;
+  });
+  userBasket.push(mainProduct);
+  userBasketCardGenerator(mainProduct);
+  setLocalStorage(userBasket)
+}
+
+function userBasketCardGenerator(product) {
+    const cardDetail = document.createElement("div")
+    cardDetail.className = "cart-item cart-column"
+    const cardImage = document.createElement("img")
+    cardImage.setAttribute("src", product.img)
+    cardImage.classList.add("cart-item-image")
+    const cardTitle = document.createElement("span")
+    cardTitle.classList.add("cart-item-title")
+    cardTitle.innerHTML = product.title
+    const cardPrice = document.createElement("span")
+    cardPrice.className = "cart-price cart-column"
+    cardPrice.innerHTML = product.price
+    const cardQuantity = document.createElement("div")
+    cardQuantity.className = "cart-quantity cart-column"
+    const quantityInput = document.createElement("input")
+    quantityInput.classList.add("cart-quantity-input")
+    quantityInput.type = "number"
+    const removeCardBtn = document.createElement("button")
+    removeCardBtn.className = "btn btn-danger"
+    removeCardBtn.type = "button"
+    removeCardBtn.innerHTML = "REMOVE"
+
+    cardDetail.append(cardImage, cardTitle)
+    cardQuantity.append(quantityInput, removeCardBtn)
+
+    const cardRowItem = document.createElement("div")
+    cardRowItem.classList.add("cart-row")
+    cardRowItem.append(cardDetail, cardPrice, cardQuantity)
+    userBasketCard.appendChild(cardRowItem)
 }
