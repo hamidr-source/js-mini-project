@@ -42,39 +42,58 @@ function addProductToBasket(productId) {
     return product.id === productId;
   });
   userBasket.push(mainProduct);
-  userBasketCardGenerator(mainProduct);
-  setLocalStorage(userBasket)
+  userBasketCardGenerator(userBasket);
+  setLocalStorage(userBasket);
 }
 
-function userBasketCardGenerator(product) {
-    const cardDetail = document.createElement("div")
-    cardDetail.className = "cart-item cart-column"
-    const cardImage = document.createElement("img")
-    cardImage.setAttribute("src", product.img)
-    cardImage.classList.add("cart-item-image")
-    const cardTitle = document.createElement("span")
-    cardTitle.classList.add("cart-item-title")
-    cardTitle.innerHTML = product.title
-    const cardPrice = document.createElement("span")
-    cardPrice.className = "cart-price cart-column"
-    cardPrice.innerHTML = product.price
-    const cardQuantity = document.createElement("div")
-    cardQuantity.className = "cart-quantity cart-column"
-    const quantityInput = document.createElement("input")
-    quantityInput.classList.add("cart-quantity-input")
-    quantityInput.type = "number"
-    quantityInput.value = 1
-
-    const removeCardBtn = document.createElement("button")
-    removeCardBtn.className = "btn btn-danger"
-    removeCardBtn.type = "button"
-    removeCardBtn.innerHTML = "REMOVE"
-
-    cardDetail.append(cardImage, cardTitle)
-    cardQuantity.append(quantityInput, removeCardBtn)
-
-    const cardRowItem = document.createElement("div")
-    cardRowItem.classList.add("cart-row")
-    cardRowItem.append(cardDetail, cardPrice, cardQuantity)
-    userBasketCard.appendChild(cardRowItem)
+function setLocalStorage(userBasket) {
+    localStorage.setItem("userBasket", JSON.stringify(userBasket))
 }
+
+function getLocalStorage () {
+    const localStorageValue = JSON.parse(localStorage.getItem("userBasket"))
+    if (localStorageValue) {
+        userBasket = localStorageValue
+    } else {
+        userBasket = []
+    }
+    userBasketCardGenerator(userBasket)
+}
+
+function userBasketCardGenerator(products) {
+  userBasketCard.innerHTML = "";
+  products.forEach(function (product) {
+    const cardDetail = document.createElement("div");
+    cardDetail.className = "cart-item cart-column";
+    const cardImage = document.createElement("img");
+    cardImage.setAttribute("src", product.img);
+    cardImage.classList.add("cart-item-image");
+    const cardTitle = document.createElement("span");
+    cardTitle.classList.add("cart-item-title");
+    cardTitle.innerHTML = product.title;
+    const cardPrice = document.createElement("span");
+    cardPrice.className = "cart-price cart-column";
+    cardPrice.innerHTML = "$" + product.price;
+    const cardQuantity = document.createElement("div");
+    cardQuantity.className = "cart-quantity cart-column";
+    const quantityInput = document.createElement("input");
+    quantityInput.classList.add("cart-quantity-input");
+    quantityInput.type = "number";
+    quantityInput.value = 1;
+
+    const removeCardBtn = document.createElement("button");
+    removeCardBtn.className = "btn btn-danger";
+    removeCardBtn.type = "button";
+    removeCardBtn.innerHTML = "REMOVE";
+
+    cardDetail.append(cardImage, cardTitle);
+    cardQuantity.append(quantityInput, removeCardBtn);
+
+    const cardRowItem = document.createElement("div");
+    cardRowItem.classList.add("cart-row");
+    cardRowItem.append(cardDetail, cardPrice, cardQuantity);
+    userBasketCard.appendChild(cardRowItem);
+  });
+}
+
+window.addEventListener("load", getLocalStorage)
