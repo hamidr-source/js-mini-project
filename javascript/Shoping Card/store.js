@@ -63,6 +63,8 @@ function userBasketCardGenerator(product) {
     const quantityInput = document.createElement("input")
     quantityInput.classList.add("cart-quantity-input")
     quantityInput.type = "number"
+    quantityInput.value = 1
+
     const removeCardBtn = document.createElement("button")
     removeCardBtn.className = "btn btn-danger"
     removeCardBtn.type = "button"
