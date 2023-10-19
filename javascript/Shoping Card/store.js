@@ -85,6 +85,9 @@ function userBasketCardGenerator(products) {
     removeCardBtn.className = "btn btn-danger";
     removeCardBtn.type = "button";
     removeCardBtn.innerHTML = "REMOVE";
+    removeCardBtn.addEventListener("click", function () {
+        removeCardHandler(product.id)
+    })
 
     cardDetail.append(cardImage, cardTitle);
     cardQuantity.append(quantityInput, removeCardBtn);
@@ -94,6 +97,17 @@ function userBasketCardGenerator(products) {
     cardRowItem.append(cardDetail, cardPrice, cardQuantity);
     userBasketCard.appendChild(cardRowItem);
   });
+}
+
+function removeCardHandler (productId) {
+    let localStorageValue = JSON.parse(localStorage.getItem("userBasket"))
+    userBasket = localStorageValue
+    let productIndex = userBasket.findIndex(function (product) {
+        return product.id === productId
+    })
+    userBasket.splice(productIndex, 1)
+    userBasketCardGenerator(userBasket)
+    setLocalStorage(userBasket)
 }
 
 window.addEventListener("load", getLocalStorage)
