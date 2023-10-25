@@ -1,14 +1,27 @@
 const productsData = [
-  { id: 1, title: "Album 1", price: 12.93, img: "Images/Album 1.png" },
-  { id: 2, title: "Album 2", price: 21, img: "Images/Album 2.png" },
-  { id: 3, title: "Album 3", price: 33, img: "Images/Album 3.png" },
-  { id: 4, title: "Album 4", price: 41.98, img: "Images/Album 4.png" },
-  { id: 5, title: "Coffee", price: 98, img: "Images/Cofee.png" },
-  { id: 6, title: "Shirt", price: 65.33, img: "Images/Shirt.png" },
+  {
+    id: 1,
+    title: "Album 1",
+    price: 12.93,
+    img: "Images/Album 1.png",
+    count: 1,
+  },
+  { id: 2, title: "Album 2", price: 21, img: "Images/Album 2.png", count: 1 },
+  { id: 3, title: "Album 3", price: 33, img: "Images/Album 3.png", count: 1 },
+  {
+    id: 4,
+    title: "Album 4",
+    price: 41.98,
+    img: "Images/Album 4.png",
+    count: 1,
+  },
+  { id: 5, title: "Coffee", price: 98, img: "Images/Cofee.png", count: 1 },
+  { id: 6, title: "Shirt", price: 65.33, img: "Images/Shirt.png", count: 1 },
 ];
 
 const shopCardsContainer = document.querySelector(".shop-items");
 const userBasketCard = document.querySelector(".cart-items");
+const totalPriceElem = document.querySelector(".cart-total-price")
 
 let userBasket = [];
 
@@ -44,20 +57,21 @@ function addProductToBasket(productId) {
   userBasket.push(mainProduct);
   userBasketCardGenerator(userBasket);
   setLocalStorage(userBasket);
+  totalPriceCalc(userBasket)
 }
 
 function setLocalStorage(userBasket) {
-    localStorage.setItem("userBasket", JSON.stringify(userBasket))
+  localStorage.setItem("userBasket", JSON.stringify(userBasket));
 }
 
-function getLocalStorage () {
-    const localStorageValue = JSON.parse(localStorage.getItem("userBasket"))
-    if (localStorageValue) {
-        userBasket = localStorageValue
-    } else {
-        userBasket = []
-    }
-    userBasketCardGenerator(userBasket)
+function getLocalStorage() {
+  const localStorageValue = JSON.parse(localStorage.getItem("userBasket"));
+  if (localStorageValue) {
+    userBasket = localStorageValue;
+  } else {
+    userBasket = [];
+  }
+  userBasketCardGenerator(userBasket);
 }
 
 function userBasketCardGenerator(products) {
@@ -79,15 +93,17 @@ function userBasketCardGenerator(products) {
     const quantityInput = document.createElement("input");
     quantityInput.classList.add("cart-quantity-input");
     quantityInput.type = "number";
-    quantityInput.value = 1;
-
+    quantityInput.value = product.count;
+    quantityInput.addEventListener("change", function() {
+      updateCountHandler(product.id, quantityInput.value)
+    })
     const removeCardBtn = document.createElement("button");
     removeCardBtn.className = "btn btn-danger";
     removeCardBtn.type = "button";
     removeCardBtn.innerHTML = "REMOVE";
     removeCardBtn.addEventListener("click", function () {
-        removeCardHandler(product.id)
-    })
+      removeProductHandler(product.id);
+    });
 
     cardDetail.append(cardImage, cardTitle);
     cardQuantity.append(quantityInput, removeCardBtn);
@@ -99,15 +115,33 @@ function userBasketCardGenerator(products) {
   });
 }
 
-function removeCardHandler (productId) {
-    let localStorageValue = JSON.parse(localStorage.getItem("userBasket"))
-    userBasket = localStorageValue
-    let productIndex = userBasket.findIndex(function (product) {
-        return product.id === productId
-    })
-    userBasket.splice(productIndex, 1)
-    userBasketCardGenerator(userBasket)
-    setLocalStorage(userBasket)
+function removeProductHandler(productId) {
+  let localStorageValue = JSON.parse(localStorage.getItem("userBasket"));
+  userBasket = localStorageValue;
+  let productIndex = userBasket.findIndex(function (product) {
+    return product.id === productId;
+  });
+  userBasket.splice(productIndex, 1);
+  userBasketCardGenerator(userBasket);
+  setLocalStorage(userBasket);
 }
 
-window.addEventListener("load", getLocalStorage)
+function totalPriceCalc (userBasket) {
+  let sum = 0
+  userBasket.forEach(function (product) {
+    sum += Math.round(product.price * product.count)
+  })
+
+  totalPriceElem.innerHTML = "$" + sum 
+}
+
+function updateCountHandler (productId, newCount) {
+  userBasket.forEach(function (product) {
+    if(productId === product.id) {
+      product.count = newCount
+    }
+    totalPriceCalc(userBasket)
+  })
+}
+
+window.addEventListener("load", getLocalStorage);
