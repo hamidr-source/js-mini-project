@@ -127,6 +127,7 @@ function removeProductHandler(productId) {
   });
   userBasket.splice(productIndex, 1);
   userBasketCardGenerator(userBasket);
+  totalPriceCalc(userBasket)
   setLocalStorage(userBasket);
 }
 
