@@ -25,6 +25,8 @@ const totalPriceElem = document.querySelector(".cart-total-price")
 
 let userBasket = [];
 
+const productFragment = document.createDocumentFragment();
+
 productsData.forEach(function (product) {
   const productCard = document.createElement("div");
   productCard.classList.add("shop-item");
@@ -47,8 +49,10 @@ productsData.forEach(function (product) {
   addProductToBasketBtn.className = "btn btn-primary shop-item-button";
   productDetails.append(productPrice, addProductToBasketBtn);
   productCard.append(productTitle, productImage, productDetails);
-  shopCardsContainer.appendChild(productCard);
+  productFragment.append(productCard)
 });
+
+shopCardsContainer.appendChild(productFragment)
 
 function addProductToBasket(productId) {
   let mainProduct = productsData.find(function (product) {
