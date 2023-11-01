@@ -16,6 +16,13 @@ let mainProduct = productsData.find(function (product) {
   return product.id === Number(productID);
 });
 
+if (mainProduct) {
+    shoesTitle.innerHTML = mainProduct.title
+
+    shoesImage.setAttribute("src", mainProduct.img)
+} else {
+    location.href = "http://127.0.0.1:5500/Dynamic%20Shoes%20Store/"
+}
 
 backBtn.addEventListener("click", function () {
   history.back();
