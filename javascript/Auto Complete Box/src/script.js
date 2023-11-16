@@ -30,4 +30,15 @@ function suggestionGenerator (wordsArray) {
     customListItem = listItemsArray.join('')
   } 
   suggestedBox.insertAdjacentHTML("beforeend", customListItem)
+  select()
+}
+
+function select () {
+  let suggestions = document.querySelectorAll('li')
+  suggestions.forEach(function (suggestion) {
+    suggestion.addEventListener("click", function (event) {
+      inputElem.value = event.target.textContent
+      searchBox.classList.remove("active")
+    })
+  })
 }
