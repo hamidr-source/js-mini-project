@@ -1,3 +1,8 @@
+const registerForm = document.querySelector(".login-form")
+const userNameInput = document.querySelector(".username-input")
+const passwordInput = document.querySelector(".password-input")
+const emailInput = document.querySelector(".email-input")
+
 let db = null
 let objectStore = null
 
@@ -17,11 +22,17 @@ window.addEventListener("load", () => {
     if (!db.objectStoreNames.contains("users")) {
         objectStore = db.createObjectStore("users")    
     }
-    
-    if (db.objectStoreNames.contains("courses")) {
-        objectStore = db.deleteObjectStore("courses")    
-    }
-    
-    console.log(db.objectStoreNames)
   })
 });
+
+registerForm.addEventListener("submit", event => {
+  event.preventDefault()
+
+  let newUserLogger = {
+    id: Math.floor(Math.random() * 9999),
+    name: userNameInput.value,
+    password: passwordInput.value,
+    email: emailInput.value
+  }
+  console.log(newUserLogger)
+})
