@@ -2,7 +2,7 @@ const registerForm = document.querySelector(".login-form");
 const userNameInput = document.querySelector(".username-input");
 const passwordInput = document.querySelector(".password-input");
 const emailInput = document.querySelector(".email-input");
-const userTableElem = document.querySelector("table")
+const userTableElem = document.querySelector("table");
 
 let db = null;
 let objectStore = null;
@@ -17,7 +17,7 @@ window.addEventListener("load", () => {
   DBOpenReq.addEventListener("success", (event) => {
     console.log("Success:", event);
     db = event.target.result;
-    getAllUsers()
+    getAllUsers();
   });
 
   DBOpenReq.addEventListener("upgradeneeded", (event) => {
@@ -61,7 +61,8 @@ registerForm.addEventListener("submit", (event) => {
 
   req.addEventListener("success", (event) => {
     console.log("Request Success:", event);
-    clearInputs()
+    clearInputs();
+    getAllUsers();
   });
 });
 
@@ -71,7 +72,7 @@ function clearInputs() {
   emailInput.value = "";
 }
 
-function getAllUsers () {
+function getAllUsers() {
   let tx = db.transaction("users", "readonly");
 
   tx.addEventListener("error", (err) => {
@@ -90,8 +91,27 @@ function getAllUsers () {
   });
 
   req.addEventListener("success", (event) => {
-    console.log("Get Request Success:", event);
-    clearInputs()
-  });
+    let allUserArr = event.target.result;
 
+    userTableElem.innerHTML = `     
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Email</th>
+      </tr>
+    `;
+    userTableElem.innerHTML += allUserArr
+      .map((user) => {
+        return `      
+      <tr>
+        <td>${user.id}</td>
+        <td>${user.name}</td>
+        <td>${user.password}</td>
+        <td>${user.email}</td>
+      </tr>
+    `;
+      })
+      .join("");
+  });
 }
