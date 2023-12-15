@@ -2,6 +2,7 @@ const registerForm = document.querySelector(".login-form");
 const userNameInput = document.querySelector(".username-input");
 const passwordInput = document.querySelector(".password-input");
 const emailInput = document.querySelector(".email-input");
+const userTableElem = document.querySelector("table")
 
 let db = null;
 let objectStore = null;
@@ -16,6 +17,7 @@ window.addEventListener("load", () => {
   DBOpenReq.addEventListener("success", (event) => {
     console.log("Success:", event);
     db = event.target.result;
+    getAllUsers()
   });
 
   DBOpenReq.addEventListener("upgradeneeded", (event) => {
@@ -52,7 +54,6 @@ registerForm.addEventListener("submit", (event) => {
 
   let store = tx.objectStore("users");
   let req = store.add(newUserLogger);
-  clearInputs()
 
   req.addEventListener("error", (err) => {
     console.warn("Request Error:", err);
@@ -60,6 +61,7 @@ registerForm.addEventListener("submit", (event) => {
 
   req.addEventListener("success", (event) => {
     console.log("Request Success:", event);
+    clearInputs()
   });
 });
 
@@ -67,4 +69,29 @@ function clearInputs() {
   userNameInput.value = "";
   passwordInput.value = "";
   emailInput.value = "";
+}
+
+function getAllUsers () {
+  let tx = db.transaction("users", "readonly");
+
+  tx.addEventListener("error", (err) => {
+    console.warn("Tx Error:", err);
+  });
+
+  tx.addEventListener("success", (event) => {
+    console.log("Tx Success:", event);
+  });
+
+  let store = tx.objectStore("users");
+  let req = store.getAll();
+
+  req.addEventListener("error", (err) => {
+    console.warn("Get Request Error:", err);
+  });
+
+  req.addEventListener("success", (event) => {
+    console.log("Get Request Success:", event);
+    clearInputs()
+  });
+
 }
