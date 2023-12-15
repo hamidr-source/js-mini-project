@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
 
   DBOpenReq.addEventListener("success", (event) => {
     console.log("Success:", event);
-    db = event.target.result
+    db = event.target.result;
   });
 
   DBOpenReq.addEventListener("upgradeneeded", (event) => {
@@ -24,7 +24,7 @@ window.addEventListener("load", () => {
 
     if (!db.objectStoreNames.contains("users")) {
       objectStore = db.createObjectStore("users", {
-        keyPath: "id"
+        keyPath: "id",
       });
     }
   });
@@ -39,25 +39,32 @@ registerForm.addEventListener("submit", (event) => {
     password: passwordInput.value,
     email: emailInput.value,
   };
-  
-  let tx = db.transaction("users", "readwrite")
 
-  tx.addEventListener("error", err => {
-    console.warn("Tx Error:", err)
-  })
+  let tx = db.transaction("users", "readwrite");
 
-  tx.addEventListener("success", event => {
-    console.log("Tx Success:", event)
-  })
+  tx.addEventListener("error", (err) => {
+    console.warn("Tx Error:", err);
+  });
 
-  let store = tx.objectStore("users")
-  let req = store.add(newUserLogger)
+  tx.addEventListener("success", (event) => {
+    console.log("Tx Success:", event);
+  });
 
-  req.addEventListener("error", err => {
-    console.warn("Request Error:", err)
-  })
+  let store = tx.objectStore("users");
+  let req = store.add(newUserLogger);
+  clearInputs()
 
-  req.addEventListener("success", event => {
-    console.log("Request Success:", event)
-  })
+  req.addEventListener("error", (err) => {
+    console.warn("Request Error:", err);
+  });
+
+  req.addEventListener("success", (event) => {
+    console.log("Request Success:", event);
+  });
 });
+
+function clearInputs() {
+  userNameInput.value = "";
+  passwordInput.value = "";
+  emailInput.value = "";
+}
