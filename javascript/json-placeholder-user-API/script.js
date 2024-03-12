@@ -43,3 +43,14 @@ const openDeleteModal = (id) => {
 const closeDeleteModal = () => {
   deleteModal.classList.remove("visible");
 };
+
+const deleteUser = () => {
+  fetch(`https://jsonplaceholder.typicode.com/users/${userID}.json`, {
+    method: "DELETE"
+  }).then(res => {
+    console.log(res)
+
+    getUser()
+    closeDeleteModal()
+  })
+}
