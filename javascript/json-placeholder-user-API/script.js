@@ -11,7 +11,7 @@ const getUser = () => {
     .then((res) => res.json())
     .then((data) => {
       let userData = data;
-
+      userContainer.innerHTML = ''
       userData.forEach((user) => {
         userContainer.insertAdjacentHTML(
           "beforeend",
@@ -45,7 +45,7 @@ const closeDeleteModal = () => {
 };
 
 const deleteUser = () => {
-  fetch(`https://jsonplaceholder.typicode.com/users/${userID}.json`, {
+  fetch(`https://jsonplaceholder.typicode.com/users/${userID}`, {
     method: "DELETE"
   }).then(res => {
     console.log(res)
