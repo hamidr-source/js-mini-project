@@ -11,10 +11,11 @@ btn.addEventListener("click", (event) => {
         password: password.value
     }
 
-    fetch('http://localhost:3000/api/users', {
+    fetch("https://user-login-api-c1510-default-rtdb.firebaseio.com/", {
         method: "POST",
         headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            "Access-Control-Allow-Headers": "*"
         }, 
         body: JSON.stringify(userData)
     }) .then(res => console.log(res))
