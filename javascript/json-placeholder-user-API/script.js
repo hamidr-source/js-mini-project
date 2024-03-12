@@ -14,10 +14,10 @@ window.addEventListener("load", () => {
           `     
           <div class="user">
             <div class="user-profile-wrap">
-                <img class="user-profile" src="content/img/noimg.png" alt="default-image">
+                <img class="user-profile" src="img/noimg.png" alt="default-image">
                 <div class="user-profile-description">
                     <h1 class="user-profile-name">${user.name} - ${user.username}<span class="user-age">18</span> </h1>
-                    <h3 class="user-explanations">Pass: ${user.email}</h3>
+                    <h3 class="user-explanations">Email: ${user.email}</h3>
                 </div>
             </div>
             <div class="btn-groups-column">
