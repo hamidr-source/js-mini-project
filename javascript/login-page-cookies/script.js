@@ -25,10 +25,17 @@ const getCookie = (cookieName) => {
   return mainCookie;
 };
 
+const emptyInput = () => {
+    username.value = ""
+    password.value = ""
+    checkBox.checked = false
+}
+
 loginBtn.addEventListener("click", (event) => {
     event.preventDefault()
 
     if (checkBox.checked) {
         setCookie("user-login-token", username.value, 3)
     }
+    emptyInput()
 })
